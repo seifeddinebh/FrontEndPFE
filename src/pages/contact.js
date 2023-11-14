@@ -2,10 +2,46 @@ import React from "react";
 import Footer from "./footer";
 import Loader from "./loader";
 import Menu from "./menu";
+import { useState } from "react";
+import LoginService from "../services/LoginService";
+import { useNavigate } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 function Contact() {
 
+
+    const myservice=new LoginService()
+    const navigate = useNavigate();
+
+    const [firstname, setfirstname] = useState("")
+    const [email, setemail] = useState("")
+    const [txt, settxt] = useState("")
+
+
+
+    const sendMail = (e) => {
+        e.preventDefault();
+        alert("SendMAil")
+        const data = {
+
+           firstname:firstname,
+           txt:txt,
+           email:email
+        }
+        console.log("data is ", data)
+
+
+       
+       myservice.SendMail(data).then((res) => {
+            console.log("Ok",res)
+            Swal.fire('Check your Email!');
+
+        })
+        navigate("/")
+
+    }
 
 
     return (
@@ -54,36 +90,52 @@ function Contact() {
                                         </div>
                                     </div>
                                     <div className="col-lg-12">
-                                        <form id="contact-form" action="" method="post">
+                                        <form id="contact-form" action="">
                                             <div className="row">
                                                 <div className="col-lg-6">
                                                     <fieldset>
-                                                        <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required />
+                                                        <input type="name"
+                                                            name="name"
+                                                            id="name"
+                                                            placeholder="Your Name..."
+                                                            autocomplete="on"
+                                                            required
+                                                            onChange={(e) => setfirstname(e.target.value)} />
                                                     </fieldset>
                                                 </div>
-                                                <div className="col-lg-6">
+                                                {/* <div className="col-lg-6">
                                                     <fieldset>
                                                         <input type="surname" name="surname" id="surname" placeholder="Your Surname..." autocomplete="on" required />
                                                     </fieldset>
-                                                </div>
+                                                </div> */}
                                                 <div className="col-lg-6">
                                                     <fieldset>
-                                                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="" />
+                                                        <input type="text"
+                                                            name="email"
+                                                            id="email"
+                                                            pattern="[^ @]*@[^ @]*"
+                                                            placeholder="Your E-mail..."
+                                                            required=""
+                                                            onChange={(e) => setemail(e.target.value)} />
                                                     </fieldset>
                                                 </div>
-                                                <div className="col-lg-6">
+                                                {/* <div className="col-lg-6">
                                                     <fieldset>
                                                         <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" />
                                                     </fieldset>
-                                                </div>
+                                                </div> */}
                                                 <div className="col-lg-12">
                                                     <fieldset>
-                                                        <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                                                        <textarea name="message"
+                                                            id="message"
+                                                            placeholder="Your Message"
+                                                            onChange={(e) => settxt(e.target.value)}>
+                                                        </textarea>
                                                     </fieldset>
                                                 </div>
                                                 <div className="col-lg-12">
                                                     <fieldset>
-                                                        <button type="submit" id="form-submit" className="orange-button">Send Message Now</button>
+                                                        <button id="form-submit" className="orange-button" onClick={(e) => sendMail(e)}>Send Mail</button>
                                                     </fieldset>
                                                 </div>
                                             </div>

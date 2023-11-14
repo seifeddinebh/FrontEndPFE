@@ -22,6 +22,8 @@ function Menu() {
                                 <li><Link to="/evenement">Events</Link></li>
                                 <li><Link to="/categorie">Categorie</Link></li>
                                 <li><Link to="/contact">Contact Us</Link></li>
+                                <li><Link to="/profile">Profile</Link>
+                                </li>
                                 <li><Link to="/signin">Sign In</Link></li>
                             </ul>
                             <a className='menu-trigger'>

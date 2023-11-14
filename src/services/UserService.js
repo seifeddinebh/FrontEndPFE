@@ -1,12 +1,11 @@
-import http from "../services/interceptor/AxiosInterceptor"
+import http from "../services/interceptor/AxiosInterceptor2"
 
 
 export default class UserService {
     create(data) {
 
-        console.log("Add User")
-        return http.post("/User/Create", data);
-
+        console.log("***userService***")
+        return http.post("/User/Create/", data);
 
     }
 
@@ -48,19 +47,14 @@ export default class UserService {
         return http.get("/User/FindUserByEmail/" + email);
     }
 
-    SendMail(data) {
+   
 
-        return http.post("/User/SendMail", data);
-
-
-    }
-
-    Login(data) {
-        console.log("*******login on service is ****", data)
-        return http.post("/User/Login/", data);
+    // Login(data) {
+    //     console.log("*******login on service is ****", data)
+    //     return http.post("/User/Login/", data);
 
 
-    }
+    // }
 
     ResetPWD(id) {
 
@@ -76,13 +70,7 @@ export default class UserService {
 
     }
 
-    Logout(id) {
-
-        return http.get("/User/Logout/" + id);
-
-
-
-    }
+    
 
 
 

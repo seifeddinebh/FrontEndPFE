@@ -4,6 +4,8 @@ import Footer from "./footer";
 import EventService from "../services/EventService";
 import ReservationService from "../services/ReservationServices";
 import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
 
 
 
@@ -12,11 +14,12 @@ function EventsDetails() {
 
     const ES = new EventService();
     const RS = new ReservationService()
+
     const location = useLocation()
     const navigate = useNavigate()
 
 
-    const [id, setid] = useState("")
+    const [id, setId] = useState("")
     const [category, setcategory] = useState("")
     const [description, setdescription] = useState("")
     const [equipement, setequipement] = useState([])
@@ -33,13 +36,20 @@ function EventsDetails() {
 
 
 
-    useEffect(() => {
+    useEffect(() => {// Reexpliquer
+        console.log("ok id ", location.state.id);
+        setId(location.state.id);//??
+        getUserById(location.state.id);//?? name(x) name(saif)
+    }, []);
 
-        setid(location.state.id);
-      
-        ES.GetOne(location.state.id).then((res) => {
-            console.log("******ONE EVENT*********", res.data.data)
-            setid(res.data.data.id);
+
+
+
+    
+
+    const getUserById = (id) => {
+        ES.GetOne(id).then((res) => {
+            console.log("detais of events", res.data);
             setcategory(res.data.data.category);
             setdescription(res.data.data.description);
             setequipement(res.data.data.equipement);
@@ -55,39 +65,47 @@ function EventsDetails() {
                 console.log("***email", res.data.data.organizer.email)
             }
 
+        });
+    };
 
 
-        })
-        // ES.GetOne().then((res) => {
 
-        //     console.log("Event ID ", res.data._id);
-        //     setid(res.data._id);
+    const res = (e) => {// e
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be reserve this event!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, reserve it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var IdClient = localStorage.getItem("resultID");// localstorage et les 2 lignes de const data
 
-        // })
-
-    }, [])
-    const reserver = (id) => {
-        var token = "myToken à changer";
-        // var token;
-        if (token != null) {
-            //alert(id)
-            //cosde reserver
-            const data={
-                "idClient": "64d62d47c0b9fb8ef1e0925e",
-                "idEvent": id
+                const data = { // data
+                    "idClient": IdClient,
+                    "idEvent": id//setId(location.state.id)
                 }
-            console.log("****data***",data)
-           // const data={};
-        RS.create(data).then((res)=>{
-         //  alert("your reservation is done")
+
+                //   console.log("****data reservation**", data);
+                Swal.fire(
+                    'Reserved!',
+                    'Your reservation is created.please check your email',
+                    'success'
+                )
+                RS.create(data).then((res) => {
+                    console.log(res.data);
+
+                })
+
+
+            }
+            navigate("/contact")
         })
-        }
-        else {
-            navigate("/signIn")
-        }
-        //  alert(id);
-        //service eli fih reservation//parametre//fonction
     }
+
 
     return (
         <div>
@@ -104,6 +122,9 @@ function EventsDetails() {
                 </div>
             </div>
 
+           
+
+
             <div className="single-product section">
                 <div className="container">
                     <div className="row">
@@ -118,7 +139,8 @@ function EventsDetails() {
                             <p>{description}</p>
                             <form id="qty" action="#">
                                 <input type="qty" className="form-control" id="1" aria-describedby="quantity" placeholder="1" />
-                                <button type="submit" onClick={(e) =>  reserver(location.state.id)}><i className="fa fa-shopping-bag"></i> Reservation</button>
+                                <button type="submit" onClick={(e) => res(e)}><i className="fa fa-shopping-bag"></i> Reservation</button>
+                                {/* e (event) Questionneer */}
 
                             </form>
                             <ul>
@@ -183,7 +205,7 @@ function EventsDetails() {
                         </div>
                         <div className="col-lg-6">
                             <div className="main-button">
-                                <a onClick={(e) => reserver(location.state.id)}>Reserver </a>
+                                <a>Reserver </a>
 
 
 

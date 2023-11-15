@@ -61,7 +61,7 @@ function SignIn() {
         formData.append("adress", adress)
         formData.append("phone", phone)
         formData.append("cin", cin)
-        formData.append("role", role)
+        formData.append("role", "client")
 
 
         console.log(formData)
@@ -69,7 +69,7 @@ function SignIn() {
         US.create(formData).then((res) => {
             // console.log(res.data)
         })
-        navigate("/notfound")
+        navigate("/login")
     }
 
     return (
@@ -186,7 +186,7 @@ function SignIn() {
 
 
 
-                                        <div className="col-lg-6">
+                                        {/* <div className="col-lg-6">
                                             <select class="form-select" aria-label="Default select example"
                                                 value={role}
                                                 onChange={(e) => setrole(e.target.value)}
@@ -197,7 +197,7 @@ function SignIn() {
                                                 <option value="client">Client</option>
                                             </select>
 
-                                        </div>
+                                        </div> */}
 
                                         <br></br>
 
@@ -206,7 +206,7 @@ function SignIn() {
 
                                             <div class="mb-3">
                                                 <label for="formFile" class="form-label">Choisir une photo</label>
-                                                <input class="form-control" type="file" id="formFile" />
+                                                <input class="form-control" type="file" id="formFile" onChange={onFileChange}/>
                                             </div>
 
                                         </div>

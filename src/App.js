@@ -15,6 +15,7 @@ import Login from './pages/login';
 import NotFound from './pages/notfound';
 import Profile from './pages/profile';
 import UpDate from './pages/update';
+import Counter from './features/counter/counter';
 
 
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/notfound" element={<NotFound />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/update/:id" element={<UpDate />} />
+          <Route path="/test" element={<Counter />} />
 
 
 

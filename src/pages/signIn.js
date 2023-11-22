@@ -69,7 +69,7 @@ function SignIn() {
         US.create(formData).then((res) => {
             // console.log(res.data)
         })
-        navigate("/login")
+        navigate("/")
     }
 
     return (
@@ -206,7 +206,7 @@ function SignIn() {
 
                                             <div class="mb-3">
                                                 <label for="formFile" class="form-label">Choisir une photo</label>
-                                                <input class="form-control" type="file" id="formFile" onChange={onFileChange}/>
+                                                <input class="form-control" type="file" id="formFile" onChange={onFileChange} />
                                             </div>
 
                                         </div>
@@ -221,13 +221,13 @@ function SignIn() {
                             </div>
                         </div>
 
-                        
+
                     </div>
                 </div>
 
-               
+
             </div>
-            <Footer/>
+            <Footer />
         </div>
     )
 }

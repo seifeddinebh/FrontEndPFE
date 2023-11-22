@@ -8,7 +8,7 @@ function Footer() {
         <footer>
             <div className="container">
                 <div className="col-lg-12">
-                    <p>Copyright © 2048 LUGX Gaming Company. All rights reserved. &nbsp;&nbsp; <a rel="nofollow" href="https://templatemo.com" target="_blank">Design: TemplateMo</a></p>
+                    <p>Copyright © 2023 Events. &nbsp;&nbsp; <a rel="nofollow" href="https://templatemo.com" target="_blank"></a></p>
                 </div>
             </div>
         </footer>

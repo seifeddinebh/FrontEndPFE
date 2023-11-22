@@ -67,7 +67,7 @@ function Categorie() {
                                 <div className="item">
                                     <div className="thumb">
                                         <Link href="product-details.html">
-                                            <img src={`http://localhost:3000/storages/${categorie.photo}`} alt="" />
+                                            <img src={`http://localhost:3000/storages/${categorie.photo}`} style={{ width: 350, height: 460 }} alt="" />
 
                                         </Link>
                                         <span className="price"><em>$36</em>${categorie.budget}</span>

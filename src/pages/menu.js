@@ -25,6 +25,7 @@ function Menu() {
                                 <li><Link to="/profile">Profile</Link>
                                 </li>
                                 <li><Link to="/signin">Sign In</Link></li>
+                                <li><Link to="/login">Log In</Link></li>
                             </ul>
                             <a className='menu-trigger'>
                                 <span>Menu</span>

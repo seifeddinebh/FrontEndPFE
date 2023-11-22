@@ -1,10 +1,44 @@
-import React from "react";
+
 import Footer from "./footer";
 import Menu from "./menu";
 import Loader from "./loader";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import CategorieService from "../services/CategorieService";
+
+import EventService from "../services/EventService";
+import { Link, useNavigate } from "react-router-dom";
 
 function Home() {
+
+    const [events, setEvents] = useState([])// tableau   
+    const ES = new EventService();
+
+    const [categories, setCategories] = useState([])
+    const CS = new CategorieService();
+
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+
+        ES.getAll().then((res) => {
+
+            console.log("Liste des evenements ", res.data.data);
+            setEvents(res.data.data);
+
+        })
+        CS.getAll().then((res) => {
+
+            console.log("Liste des categorie ", res.data.data)
+            setCategories(res.data.data)
+        })
+
+    }, [])
+    const viewDetailsfunction = (id) => {
+        alert("Details")
+        //navigation vers la page eventdaetail/id
+        navigate("/eventDetails/" + id, { state: { id: id } })
+    }
 
 
     return (
@@ -134,78 +168,26 @@ function Home() {
                                 <Link to="/evenement">View All</Link>
                             </div>
                         </div>
-                        <div className="col-lg-2 col-md-6 col-sm-6">
-                            <div className="item">
-                                <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/top-game-01.jpg" alt=""></img></a>
-                                </div>
-                                <div className="down-content">
-                                    <span className="category">Adventure</span>
-                                    <h4>Assasin Creed</h4>
-                                    <a href="product-details.html">Explore</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-6 col-sm-6">
-                            <div className="item">
-                                <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/top-game-02.jpg" alt=""></img></a>
-                                </div>
-                                <div className="down-content">
-                                    <span className="category">Adventure</span>
-                                    <h4>Assasin Creed</h4>
-                                    <a href="product-details.html">Explore</a>
+
+                        {events.map((oneEvent) => (
+                            <div className="col-lg-2 col-md-6 col-sm-6">
+                                <div className="item">
+                                    <div className="thumb">
+                                        <a href="product-details.html">
+                                            <img src={`http://localhost:3000/storages/${oneEvent.photo}`} style={{ width: 150, height: 250 }}
+
+
+                                                alt=""></img></a>
+                                    </div>
+                                    <div className="down-content">
+                                        <span className="category">{oneEvent.name}</span>
+                                        <h4>{oneEvent.localisation}</h4>
+                                        <a onClick={(e) => viewDetailsfunction(oneEvent._id)}>Details</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-lg-2 col-md-6 col-sm-6">
-                            <div className="item">
-                                <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/top-game-03.jpg" alt=""></img></a>
-                                </div>
-                                <div className="down-content">
-                                    <span className="category">Adventure</span>
-                                    <h4>Assasin Creed</h4>
-                                    <a href="product-details.html">Explore</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-6 col-sm-6">
-                            <div className="item">
-                                <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/top-game-04.jpg" alt="" /></a>
-                                </div>
-                                <div className="down-content">
-                                    <span className="category">Adventure</span>
-                                    <h4>Assasin Creed</h4>
-                                    <a href="product-details.html">Explore</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-6 col-sm-6">
-                            <div className="item">
-                                <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/top-game-05.jpg" alt=""></img></a>
-                                </div>
-                                <div className="down-content">
-                                    <span className="category">Adventure</span>
-                                    <h4>Assasin Creed</h4>
-                                    <a href="product-details.html">Explore</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-6 col-sm-6">
-                            <div className="item">
-                                <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/top-game-06.jpg" alt=""></img></a>
-                                </div>
-                                <div className="down-content">
-                                    <span className="category">Adventure</span>
-                                    <h4>Assasin Creed</h4>
-                                    <a href="product-details.html">Explore</a>
-                                </div>
-                            </div>
-                        </div>
+                        ))}
+
                     </div>
                 </div>
             </div>
@@ -219,46 +201,30 @@ function Home() {
                                 <h2>Top Categories</h2>
                             </div>
                         </div>
-                        <div className="col-lg col-sm-6 col-xs-12">
+
+                        {categories.map((oneCat) => (<div className="col-lg col-sm-6 col-xs-12">
                             <div className="item">
-                                <h4>Action</h4>
+                                <h4>{oneCat.name}</h4>
                                 <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/categories-01.jpg" alt=""></img></a>
+                                    <a href="product-details.html">
+
+                                        {/* <img src="assets/images/categories-05.jpg" alt=""></img> */}
+                                        <img src={`http://localhost:3000/storages/${oneCat.photo}`} style={{ width: 150, height: 250, borderRadius: 25 }}
+
+
+                                            alt=""></img>
+
+
+                                    </a>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-lg col-sm-6 col-xs-12">
-                            <div className="item">
-                                <h4>Action</h4>
-                                <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/categories-05.jpg" alt=""></img></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg col-sm-6 col-xs-12">
-                            <div className="item">
-                                <h4>Action</h4>
-                                <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/categories-03.jpg" alt=""></img></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg col-sm-6 col-xs-12">
-                            <div className="item">
-                                <h4>Action</h4>
-                                <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/categories-04.jpg" alt=""></img></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg col-sm-6 col-xs-12">
-                            <div className="item">
-                                <h4>Action</h4>
-                                <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/categories-05.jpg" alt=""></img></a>
-                                </div>
-                            </div>
-                        </div>
+                        </div>)
+
+
+
+                        )}
+
+
                     </div>
                 </div>
             </div>
@@ -271,12 +237,12 @@ function Home() {
                                 <div className="row">
                                     <div className="col-lg-12">
                                         <div className="section-heading">
-                                            <h6>Our Shop</h6>
-                                            <h2>Go Pre-Order Buy & Get Best <em>Prices</em> For You!</h2>
+                                            <h6>Top Organizer</h6>
+
                                         </div>
-                                        <p>Lorem ipsum dolor consectetur adipiscing, sed do eiusmod tempor incididunt.</p>
+
                                         <div className="main-button">
-                                            <a href="shop.html">Shop Now</a>
+                                            <img src={"assets/images/Organiser_img 2.jpg"} style={{ width: 400, height: 400, borderRadius: 200 }} />
                                         </div>
                                     </div>
                                 </div>
@@ -287,14 +253,11 @@ function Home() {
                                 <div className="row">
                                     <div className="col-lg-12">
                                         <div className="section-heading">
-                                            <h6>NEWSLETTER</h6>
-                                            <h2>Get Up To $100 Off Just Buy <em>Subscribe</em> Newsletter!</h2>
+                                            <h6>Top Organizer</h6>
+
                                         </div>
                                         <div className="search-input">
-                                            <form id="subscribe" action="#">
-                                                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your email..." />
-                                                <button type="submit">Subscribe Now</button>
-                                            </form>
+                                            <img src={"assets/images/Organiser_img.jpg"} style={{ width: 400, height: 400, borderRadius: 200 }} />
                                         </div>
                                     </div>
                                 </div>

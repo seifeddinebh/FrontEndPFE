@@ -65,13 +65,20 @@ function Evenement() {
 
                     <ul className="trending-filter">
 
-                        <input type="name"
+                        {/* <input type="name"
                             name="name" id="name"
                             placeholder='search' onChange={(event) => setquery(event.target.value)}
                             style={{ backgroundColor: "white", borderRadius: "30%" }}
-                        />
+                        /> */}
 
+                        <div class="row">
+                            <div className="col-md-3 offset-4">
 
+                                <input type="text" class="form-control" placeholder="search" aria-label="Username"
+                                    onChange={(event) => setquery(event.target.value)}
+                                    aria-describedby="addon-wrapping" />
+                            </div>
+                        </div>
 
                         {/* <li>
                             <a className="is_active" href="#!" data-filter="*">Recherche</a>
@@ -98,37 +105,37 @@ function Evenement() {
 
 
                         {events
-                        
-                        .filter((event)=>{
-                        if(query==""){return event;}
-                        else if(event.name.toLowerCase().includes(query.toLowerCase())){
-                            return event
-                        }
-                        }
-                        )
-                        
-                        
-                        
-                        .map((event) => (
-                            <div className="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 adv">
-                                <div className="item">
-                                    <div className="thumb">
-                                        <Link href="product-details.html">
-                                            <img src={`http://localhost:3000/storages/${event.photo}`} alt="" />
-                                        </Link>
-                                        <span className="price"><em>$36</em>${event.price}</span>
-                                    </div>
-                                    <div className="down-content">
-                                        <span className="category">{event.name}</span>
-                                        <h4>{event.description}</h4>
 
-                                        <i className="fa fa-shopping-bag" onClick={(e) => viewDetailsfunction(event._id)}></i>
+                            .filter((event) => {
+                                if (query == "") { return event; }
+                                else if (event.name.toLowerCase().includes(query.toLowerCase())) {
+                                    return event
+                                }
+                            }
+                            )
 
+
+
+                            .map((event) => (
+                                <div className="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 adv">
+                                    <div className="item">
+                                        <div className="thumb">
+                                            <Link href="product-details.html">
+                                                <img src={`http://localhost:3000/storages/${event.photo}`} style={{ width: 350, height: 460 }} alt="" />
+                                            </Link>
+                                            <span className="price"><em>$36</em>${event.price}</span>
+                                        </div>
+                                        <div className="down-content">
+                                            <span className="category">{event.name}</span>
+                                            <h4>{event.description}</h4>
+
+                                            <i className="fa fa-shopping-bag" onClick={(e) => viewDetailsfunction(event._id)}></i>
+
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        ))}
+                            ))}
 
                     </div>
                     <div className="row">

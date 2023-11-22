@@ -12,7 +12,7 @@ function Menu() {
                     <div className="col-12">
                         <nav className="main-nav">
                             {/* <!-- ***** Logo Start ***** --> */}
-                            <Link to="index.html" className="logo">
+                            <Link to="/" className="logo">
                                 <img src="assets/images/logo.png" alt="" style={{ width: 158 }}></img>
                             </Link>
                             {/* <!-- ***** Logo End ***** -->

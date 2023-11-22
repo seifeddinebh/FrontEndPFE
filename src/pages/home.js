@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "./footer";
 import Menu from "./menu";
 import Loader from "./loader";
+import { Link } from "react-router-dom";
 
 function Home() {
 
@@ -38,128 +39,83 @@ function Home() {
                         </div>
                         <div className="col-lg-4 offset-lg-2">
                             <div className="right-image">
-                                <img src="assets/images/banner-image.jpg" alt=""></img>
-                                <span className="price">$22</span>
-                                <span className="offer">-40%</span>
+                                <img src="assets/images/Evenement_Home_Page.jpg" alt=""></img>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="features">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-3 col-md-6">
-                            <a href="#">
-                                <div className="item">
-                                    <div className="image">
-                                        <img src="assets/images/featured-01.png" alt="" style={{ max_width: 44 }} />
-                                    </div>
-                                    <h4>Free Storage</h4>
-                                </div>
-                            </a>
-                        </div>
-                        <div className="col-lg-3 col-md-6">
-                            <a href="#">
-                                <div className="item">
-                                    <div className="image">
-                                        <img src="assets/images/featured-02.png" alt="" style={{ max_width: 44 }}></img>
-                                    </div>
-                                    <h4>User More</h4>
-                                </div>
-                            </a>
-                        </div>
-                        <div className="col-lg-3 col-md-6">
-                            <a href="#">
-                                <div className="item">
-                                    <div className="image">
-                                        <img src="assets/images/featured-03.png" alt="" style={{ max_width: 44 }}></img>
-                                    </div>
-                                    <h4>Reply Ready</h4>
-                                </div>
-                            </a>
-                        </div>
-                        <div className="col-lg-3 col-md-6">
-                            <a href="#">
-                                <div className="item">
-                                    <div className="image">
-                                        <img src="assets/images/featured-04.png" alt="" style={{ max_width: 44 }}></img>
-                                    </div>
-                                    <h4>Easy Layout</h4>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
             <div className="section trending">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6">
                             <div className="section-heading">
-                                <h6>Trending</h6>
-                                <h2>Trending Games</h2>
+                                <h6>Top</h6>
+                                <h2>Events</h2>
                             </div>
                         </div>
                         <div className="col-lg-6">
                             <div className="main-button">
-                                <a href="shop.html">View All</a>
+                                <Link to="/evenement">View All</Link>
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6">
                             <div className="item">
                                 <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/trending-01.jpg" alt=""></img></a>
-                                    <span className="price"><em>$28</em>$20</span>
+                                    <img src="assets/images/Sport_Event.jpg" style={{ width: 350, height: 460 }} alt=""></img>
+
                                 </div>
                                 <div className="down-content">
-                                    <span className="category">Action</span>
-                                    <h4>Assasin Creed</h4>
-                                    <a href="product-details.html"><i className="fa fa-shopping-bag"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-3 col-md-6">
-                            <div className="item">
-                                <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/trending-02.jpg" alt=""></img></a>
-                                    <span className="price">$44</span>
-                                </div>
-                                <div className="down-content">
-                                    <span className="category">Action</span>
-                                    <h4>Assasin Creed</h4>
-                                    <a href="product-details.html"><i className="fa fa-shopping-bag"></i></a>
+
+                                    <h4>Top1</h4>
+
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6">
                             <div className="item">
                                 <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/trending-03.jpg" alt=""></img></a>
-                                    <span className="price"><em>$64</em>$44</span>
+                                    <img src="assets/images/Evenement_Clturel.jpg" style={{ width: 350, height: 460 }} alt=""></img>
+
                                 </div>
                                 <div className="down-content">
-                                    <span className="category">Action</span>
-                                    <h4>Assasin Creed</h4>
-                                    <a href="product-details.html"><i className="fa fa-shopping-bag"></i></a>
+
+                                    <h4>Top2</h4>
+
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6">
                             <div className="item">
                                 <div className="thumb">
-                                    <a href="product-details.html"><img src="assets/images/trending-04.jpg" alt=""></img></a>
-                                    <span className="price">$32</span>
+                                    <img src="assets/images/Sciences_Event.jpg" style={{ width: 300, height: 460 }} alt=""></img>
+
                                 </div>
                                 <div className="down-content">
-                                    <span className="category">Action</span>
-                                    <h4>Assasin Creed</h4>
-                                    <a href="product-details.html"><i className="fa fa-shopping-bag"></i></a>
+
+                                    <h4>Top3</h4>
+
                                 </div>
                             </div>
                         </div>
+                        <div className="col-lg-3 col-md-6">
+                            <div className="item">
+                                <div className="thumb">
+                                    <img src="assets/images/Camping_Events.jpg" style={{ width: 350, height: 460 }} alt=""></img>
+
+                                </div>
+                                <div className="down-content">
+
+                                    <h4>Top4</h4>
+
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -169,13 +125,13 @@ function Home() {
                     <div className="row">
                         <div className="col-lg-6">
                             <div className="section-heading">
-                                <h6>TOP GAMES</h6>
-                                <h2>Most Played</h2>
+                                <h6>List </h6>
+                                <h2>Events</h2>
                             </div>
                         </div>
                         <div className="col-lg-6">
                             <div className="main-button">
-                                <a href="shop.html">View All</a>
+                                <Link to="/evenement">View All</Link>
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-6 col-sm-6">

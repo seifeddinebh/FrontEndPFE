@@ -5,11 +5,22 @@ import EventService from "../services/EventService";
 import ReservationService from "../services/ReservationServices";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useSelector, useDispatch } from 'react-redux';
+//import { decrementer, setID, incrementer } from "../features/counter/reservationSlice";
 
 
+import { increment, decrement } from '../features/counter/counterSlice'
 
+
+  
 
 function EventsDetails() {
+    const [id, setId] = useState("")
+   //// const reservationnb=useSelector((state)=>(state.reservation.value))
+//    const count = useSelector((state) => state.counter.value);
+//    console.log("****",count)
+   // const [id, setId] = useSelector((state)=>(state.reservation.id))
+    const dispatch =useDispatch()
 
 
     const ES = new EventService();
@@ -19,7 +30,7 @@ function EventsDetails() {
     const navigate = useNavigate()
 
 
-    const [id, setId] = useState("")
+   
     const [category, setcategory] = useState("")
     const [description, setdescription] = useState("")
     const [equipement, setequipement] = useState([])
@@ -37,8 +48,9 @@ function EventsDetails() {
 
 
     useEffect(() => {// Reexpliquer
-        console.log("ok id ", location.state.id);
-        setId(location.state.id);//??
+    
+      setId(location.state.id)
+      console.log("***",location.state.id)
         getUserById(location.state.id);//?? name(x) name(saif)
     }, []);
 
@@ -138,7 +150,15 @@ function EventsDetails() {
                             <span className="price"><em>$28</em> ${price}</span>
                             <p>{description}</p>
                             <form id="qty" action="#">
-                                <input type="qty" className="form-control" id="1" aria-describedby="quantity" placeholder="1" />
+                                {/* <div>
+                                <button onClick={()=>dispatch(decrement())}>-</button>
+
+                                &emsp; {count}&emsp;
+
+                                <button onClick={()=>dispatch(increment())}>+</button>
+                                </div> */}
+                                <br></br>
+                              
                                 <button type="submit" onClick={(e) => res(e)}><i className="fa fa-shopping-bag"></i> Reservation</button>
                                 {/* e (event) Questionneer */}
 
